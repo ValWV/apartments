@@ -2,7 +2,7 @@ function getWaitTimes(){
   $("error").html('loading....');
   $.ajax({
     type: "GET",
-    url: "https://apanorama.spb.ru/Feed_1063.xml",
+    url: "https://raw.githubusercontent.com/ValWV/apartments/master/docs/parse/Feed_2.xml",
     dataType: "xml",
     success: function(xml){
       $xml = $(xml);
@@ -15,7 +15,7 @@ function getWaitTimes(){
         var averageWaitTime = Math.round($(this).find('AverageWaitTime').text()/60);
         var longestWait = Math.round($(this).find('LongestCurrentWaitTime').text()/60);
         var patientsWaiting = $(this).find('PatientsStillWaiting').text();
-        var totalPatients = $(this).find('image').text();
+        var totalPatients = $(this).find('image[tag="plan"]:first').text();
         var htmlOutPut = ''+
           '<div class="col-md-3 card card-shadow">'+
             '<div class="waitTimes__address">'+departmentName+'</div>'+
@@ -31,7 +31,7 @@ function getWaitTimes(){
             '<div class="bg-light slide-content specifiaction-box"> <div class="row"> '+
             '<div class="col-6">longest wait: '+longestWait+'</div>'+
             '<div class="col-6">patients waiting: '+patientsWaiting+'</div></div></div>'+
-            '<img class="card-img-top" src=" '+totalPatients+'">'+
+            '<img class="card-img-top" src="'+totalPatients+'">'+
           '</div>'+
         '';
         $('.data__sims').append(htmlOutPut);
