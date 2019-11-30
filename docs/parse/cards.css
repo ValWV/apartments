@@ -1,0 +1,192 @@
+/*! -- Stack Cards -- */
+.card__top {
+    position: relative;
+    overflow: hidden;
+  }
+  .card__action a {
+    color: #666666;
+    text-decoration: none;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+  }
+  .card__action a i {
+    color: #252525;
+    font-size: 1em;
+  }
+  .card__action a span {
+    position: relative;
+    bottom: 2px;
+  }
+  .card__action a:not(:hover) {
+    opacity: .5;
+  }
+  .card p a {
+    text-decoration: none;
+  }
+  .masonry__item .card.boxed {
+    margin-bottom: 0;
+  }
+  .card-1 .card__avatar {
+    margin-bottom: 0.92857143em;
+  }
+  .card-1 .card__avatar img {
+    max-height: 2.78571429em;
+    margin-right: 0.46428571em;
+    margin-bottom: 0;
+  }
+  .card-1 .card__avatar,
+  .card-1 .card__meta {
+    display: inline-block;
+  }
+  .card-1 .card__meta {
+    float: right;
+  }
+  .card-1 .card__body {
+    border-bottom: 1px solid #ececec;
+    padding-bottom: 0.92857143em;
+    margin-bottom: 0.92857143em;
+  }
+  .card-1 .card__body img {
+    margin-bottom: 0.92857143em;
+  }
+  .card-1 .card__body h4 {
+    margin-bottom: 0.342105263157895em;
+  }
+  .bg--dark .card-1 .card__body {
+    border-color: #3f3f3f;
+  }
+  @media all and (max-width: 767px) {
+    .card .list-inline:not(.social-list) li {
+      display: inline-block;
+    }
+    .card .list-inline:not(.social-list) li:not(:first-child) {
+      margin-left: 0.92857143em;
+    }
+  }
+  .card-2 .card__top img {
+    border-radius: 6px 6px 0 0;
+  }
+  .card-2 .card__body {
+    border-bottom: 1px solid #ececec;
+    padding-bottom: 1.85714286em;
+  }
+  .card-2 .card__body h4 {
+    margin: 0;
+  }
+  .card-2 .card__body p {
+    margin-top: 0.92857143em;
+  }
+  .card-2 .card__bottom {
+    overflow: hidden;
+  }
+  .card-2 .card__bottom > div {
+    display: inline-block;
+    width: 50%;
+    float: left;
+  }
+  .card-2 .card__bottom .h6 {
+    margin-bottom: 0.541666666666667em;
+  }
+  .card-2 .card__body,
+  .card-2 .card__bottom {
+    padding: 1.85714286em;
+    border: 1px solid #ececec;
+  }
+  .card-2 .card__body {
+    border-bottom: none;
+    border-top: none;
+  }
+  .card-2 .card__bottom {
+    border-radius: 0 0 6px 6px;
+    padding: 0.92857143em 1.85714286em;
+  }
+  .card-2 .card__action i {
+    font-size: 1.78571429em;
+  }
+  .bg--dark .card-2 .card__body,
+  .bg--dark .card-2 .card__bottom {
+    border-color: #3f3f3f;
+  }
+  /*! -- Stack Checkmarks & Crosses -- */
+  .checkmark {
+    display: inline-block;
+    position: relative;
+    width: 1.23809524em;
+    height: 1.23809524em;
+    border-radius: 50%;
+    text-align: center;
+  }
+  .checkmark:not([class*='bg-']) {
+    background: #4a90e2;
+  }
+  .checkmark:before {
+    content: '\2713';
+    color: #fff;
+    font-size: 11px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -4px;
+  }
+  .checkmark.checkmark--cross:before {
+    content: '\2717';
+  }
+  .checkmark:not(:last-child) {
+    margin-right: 13px;
+  }
+  
+  
+  /**! 17. Boxes **/
+  .boxed {
+    position: relative;
+    overflow: hidden;
+    padding: 1.85714286em;
+    margin-bottom: 30px;
+  }
+  .boxed.boxed--lg {
+    padding: 2.78571429em;
+  }
+  .boxed.boxed--sm {
+    padding: 1.23809524em;
+  }
+  .boxed.boxed--border {
+    border: 1px solid #ececec;
+  }
+  .boxed > div[class*='col-']:first-child:not(.boxed) {
+    padding-left: 0;
+  }
+  .boxed > div[class*='col-']:last-child:not(.boxed) {
+    padding-right: 0;
+  }
+  img + .boxed {
+    margin-top: -1.85714286em;
+  }
+  @media all and (max-width: 767px) {
+    .boxed {
+      padding: 1.23809524em;
+      margin-bottom: 15px;
+    }
+    .boxed.boxed--lg {
+      padding: 1.23809524em;
+    }
+    .boxed div[class*='col-']:not(.boxed) {
+      padding: 0;
+    }
+    .boxed:last-child {
+      margin-bottom: 15px;
+    }
+  }
+  
+  
+  .card .card-2::after {
+      right: -1rem;
+      bottom: -1rem;
+      left: 1rem;
+      top: 1rem;
+      background: #1f2229 !important;
+      border-radius: 10px;
+      z-index: 3;
+      -webkit-transition: 0.3s ease;
+      transition: 0.3s ease;
+  }

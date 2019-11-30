@@ -11,20 +11,20 @@ function getWaitTimes(){
         var idType = $(this).find('type').eq(0).text();
         var id2 = $(this).find('ID').eq(1).text();
         var idType2 = $(this).find('Type').eq(1).text();
-        var departmentName = $(this).find('address').text();
+        var Name = $(this).find('address').text();
         var averageWaitTime = Math.round($(this).find('AverageWaitTime').text()/60);
         var longestWait = Math.round($(this).find('LongestCurrentWaitTime').text()/60);
-        var patientsWaiting = $(this).find('PatientsStillWaiting').text();
+        var price = $(this).find('price').text();
         var totalPatients = $(this).find('image[tag="plan"]:first').text();
         var htmlOutPut = ''+
           '<div class="col-md-3 card card-shadow">'+
             '<div class="card__top">'+
                       '<img class="card-img-top" src="'+totalPatients+'">'+
             '</div>'+
-            '<h4>'+departmentName+'</h4>'+
-            '<div class="waitTimes__information">'+
-              '<div class="waitTimes__approximateWaitTimes">APPROXIMATE<br />WAIT TIMES</div>'+
-              '<div class="waitTimes__longestWait">'+longestWait+'</div>'+
+            '<h4>'+Name+'</h4>'+
+            '<div class="card__body">'+
+              '<h5 data-animation="animated flipInX" class="m-b-10 m-t-0">'+price+'</h5>'+
+              '<div class="text-info m-b-0">'+longestWait+'</div>'+
               '<div class="waitTimes__minutes">minutes</div>'+              
             '</div>'+
             '<div class="waitTimes__other">id: '+id+'</div>'+
