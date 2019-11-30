@@ -18,8 +18,9 @@ function getWaitTimes(){
         var totalPatients = $(this).find('image[tag="plan"]:first').text();
         var htmlOutPut = ''+
           '<div class="col-md-3 card card-shadow">'+
+            '<div class="card__top">'+
                       '<img class="card-img-top" src="'+totalPatients+'">'+
-            
+            '</div>'+
             '<div class="waitTimes__address">'+departmentName+'</div>'+
             '<div class="waitTimes__information">'+
               '<div class="waitTimes__approximateWaitTimes">APPROXIMATE<br />WAIT TIMES</div>'+
