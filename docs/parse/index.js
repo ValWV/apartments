@@ -18,6 +18,8 @@ function getWaitTimes(){
         var totalPatients = $(this).find('image[tag="plan"]:first').text();
         var htmlOutPut = ''+
           '<div class="col-md-3 card card-shadow">'+
+            '<div class="card__top">'
+            '<img class="card-img-top" src="'+totalPatients+'"></div>'+
             '<div class="waitTimes__address">'+departmentName+'</div>'+
             '<div class="waitTimes__information">'+
               '<div class="waitTimes__approximateWaitTimes">APPROXIMATE<br />WAIT TIMES</div>'+
@@ -31,7 +33,7 @@ function getWaitTimes(){
             '<div class="bg-light slide-content specifiaction-box"> <div class="row"> '+
             '<div class="col-6">longest wait: '+longestWait+'</div>'+
             '<div class="col-6">patients waiting: '+patientsWaiting+'</div></div></div>'+
-            '<img class="card-img-top" src="'+totalPatients+'">'+
+            
           '</div>'+
         '';
         $('.data__sims').append(htmlOutPut);
