@@ -55,8 +55,7 @@ function getWaitTimes(){
             
             '<div class="card__body">'+
               '<h4>'+Name+'</h4>'+
-              '<h5 data-animation="animated flipInX" class="m-b-10 m-t-0">'+price+'</h5>'+
-              '<div class="text-info m-b-0">'+longestWait+'RUB</div>'+          
+              '<div class="text-info m-b-0">'+price+'RUB</div>'+          
             '</div>'+
             '<div class="card__bottom text-center">'+
             '<div class="card__action">'+
@@ -83,14 +82,23 @@ function getWaitTimes(){
           '<div id="item'+id+'" class="modal fade custom-modal modal5" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">'+
                                     '<div class="modal-dialog modal-lg">'+
                                         '<div class="modal-content po-relative">'+
+                                           '<div class="row">'+
                                             '<div class="col-lg-6 col-md-4 modal-bg-img" style="background-image: url('+totalPatients+');">'+
                                             '</div>'+
                                              '<div class="col-lg-6 col-md-8">'+
                                                         '<div class="modal-bg">'+
-                                                               '<h4 class="modal-title">Апартаменты' + id+'</h4>'+
+                                                               '<h4 class="modal-title">АПАРТАМЕНТЫ' +  id+'</h4>'+
                                                                 '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>'+
-                                                         '</div>'+
-                                             '</div>'+
+                                                    '<div class="row">'+    
+                                                         '<div class="col-md-6">'+ 
+                                                                '<h6>'+ area +'</h6>'+           
+                                                          '</div>'+
+                                                          '<div class="col-md-6">'+ 
+                                                                '<h6>'+ price +'</h6>'+           
+                                                          '</div>'+
+                                                     '</div>'+
+                                              '</div>'+
+                                            '</div>'+
                                           '</div>'+
                                       '</div>'+
                                 '</div>'+
