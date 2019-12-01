@@ -82,12 +82,15 @@ function getWaitTimes(){
           '<div id="item'+id+'" class="modal fade custom-modal modal5" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">'+
                                     '<div class="modal-dialog modal-lg">'+
                                         '<div class="modal-content po-relative">'+
+                                          '<div class="modal-body p-0">'+
+            '<a href="#" class="close-btn" data-dismiss="modal" aria-hidden="true">×</a>'+
                                            '<div class="row">'+
-                                            '<div class="col-lg-6 col-md-4 modal-bg-img" style="background-image: url('+totalPatients+');">'+
+                                            '<div class="col-lg-4 col-md-4">'+ 
+                                                 '<img class="rounded img-responsive" src="'+totalPatients+'" alt="">'+
                                             '</div>'+
-                                             '<div class="col-lg-6 col-md-8">'+
+                                             '<div class="col-lg-8 col-md-8">'+
                                                         '<div class="modal-bg">'+
-                                                               '<h4 class="modal-title">АПАРТАМЕНТЫ' +  id+'</h4>'+
+                                                               '<h4 class="modal-title">АПАРТАМЕНТЫ  ' +id+'</h4>'+
                                                                 '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>'+
                                                     '<div class="row">'+    
                                                          '<div class="col-md-6">'+ 
@@ -98,6 +101,7 @@ function getWaitTimes(){
                                                           '</div>'+
                                                      '</div>'+
                                               '</div>'+
+                                            '</div>'+
                                             '</div>'+
                                           '</div>'+
                                       '</div>'+
