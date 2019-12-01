@@ -37,9 +37,10 @@ function getWaitTimes(){
         var readyquarter = $(this).find('ready-quarter').text();
         var area = $(this).find('area>value').text();
         var lspace = $(this).find('living-space>value').text();
+        var kspace = $(this).find('kitchen-space>value').text();
         var floor = $(this).find('floor').text();
         var floorstotal = $(this).find('floors-total').text();
-        var totalPatients = $(this).find('image[tag="plan"]:first').text();
+        var photo = $(this).find('image[tag="plan"]:first').text();
         var buildingname = $(this).find('building-name').text();
         var buildingsection = $(this).find('building-section').text();
         var builtyear = $(this).find('built-year').text();
@@ -50,7 +51,7 @@ function getWaitTimes(){
           '<div class="col-md-3" data-id="'+id+'">'+
             '<div class="card card-2" data-toggle="modal" data-target="#item'+id+'">'+
             '<div class="card__top">'+
-                      '<img class="card-img-top" style="width:285px; height:250px;" src="'+totalPatients+'">'+
+                      '<img class="card-img-top" style="width:285px; height:250px;" src="'+photo+'">'+
             '</div>'+
             
             '<div class="card__body">'+
@@ -86,20 +87,32 @@ function getWaitTimes(){
             '<a href="#" class="close-btn" data-dismiss="modal" aria-hidden="true">×</a>'+
                                            '<div class="row">'+
                                             '<div class="col-lg-4 col-md-4">'+ 
-                                                 '<img class="rounded img-responsive" src="'+totalPatients+'" alt="">'+
+                                                 '<img class="rounded img-responsive" src="'+photo+'" alt="">'+
                                             '</div>'+
                                              '<div class="col-lg-8 col-md-8">'+
                                                         '<div class="modal-bg">'+
-                                                               '<h4 class="modal-title">АПАРТАМЕНТЫ  ' +id+'</h4>'+
-                                                                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>'+
+                                                               '<h4 class="modal-title">АПАРТАМЕНТЫ  ' +buildingname + rooms  +'</h4>'+
                                                     '<div class="row">'+    
                                                          '<div class="col-md-6">'+ 
-                                                                '<h6>'+ area +'</h6>'+           
+                                                                '<h5 class="m-b-20 text-uppercase font-semibold">'+ area +'м2</h5>'+           
                                                           '</div>'+
                                                           '<div class="col-md-6">'+ 
-                                                                '<h6>'+ price +'</h6>'+           
+                                                                '<h5 class="m-b-20 text-uppercase font-semibold">'+ price +'RUB</h5>'+           
                                                           '</div>'+
                                                      '</div>'+
+            
+                                                    '<div class="row">'+    
+                                                         '<div class="col-md-3">'+ 
+                                                                '<h6 class="m-b-20 text-uppercase font-semibold">'+ lspace +'м2</h6>'+           
+                                                          '</div>'+
+                                                          '<div class="col-md-3">'+ 
+                                                                '<h6 class="m-b-20 text-uppercase font-semibold">'+ kspace +'м2</h6>'+           
+                                                          '</div>'+
+                                                          '<div class="col-md-3">'+ 
+                                                                '<h6 class="m-b-20 text-uppercase font-semibold">'+ floor +'</h6>'+           
+                                                          '</div>'+
+                                                     '</div>'+            
+            
                                               '</div>'+
                                             '</div>'+
                                             '</div>'+
