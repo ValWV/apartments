@@ -50,7 +50,8 @@ function getWaitTimes(){
         var idType = $(this).find('type').eq(0).text();
         var id2 = $(this).find('ID').eq(1).text();
         var idType2 = $(this).find('Type').eq(1).text();
-        var Name = $(this).find('address').text();
+        var Name = $(this).find('address').text();\       
+        var cat = $(this).find('category').text();
         var averageWaitTime = Math.round($(this).find('AverageWaitTime').text()/60);
         var longestWait = Math.round($(this).find('LongestCurrentWaitTime').text()/60);
         var price = $(this).find('price>value').text();
@@ -75,7 +76,7 @@ function getWaitTimes(){
             '</div>'+
             
             '<div class="card__body">'+
-              '<h4>'+rooms+ area+' м</h4>'+
+              '<h4>'+cat +rooms+ area+' м</h4>'+
               '<div class="text-info m-b-0">'+price+'RUB</div>'+          
             '</div>'+
             '<div class="card__bottom text-center">'+
