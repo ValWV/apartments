@@ -26,7 +26,7 @@ function getWaitTimes(){
     success: function(xml){
       $xml = $(xml);
       $($xml).find('realty-feed>offer').each(function(){
-        var id = $(this).find('id').attr('id').text();
+        var id = $(this).attr('offer').text();
         var idType = $(this).find('type').eq(0).text();
         var id2 = $(this).find('ID').eq(1).text();
         var idType2 = $(this).find('Type').eq(1).text();
