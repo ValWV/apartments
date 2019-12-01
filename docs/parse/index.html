@@ -26,7 +26,7 @@ function getWaitTimes(){
     success: function(xml){
       $xml = $(xml);
       $($xml).find('realty-feed>offer').each(function(){
-        var id = $(this).find('id').eq(0).text();
+        var id = $(this).find('id').attr('id').text();
         var idType = $(this).find('type').eq(0).text();
         var id2 = $(this).find('ID').eq(1).text();
         var idType2 = $(this).find('Type').eq(1).text();
@@ -41,7 +41,7 @@ function getWaitTimes(){
         var floorstotal = $(this).find('floors-total').text();
         var totalPatients = $(this).find('image[tag="plan"]:first').text();
         var htmlOutPut = ''+
-          '<div class="col-md-3">'+
+          '<div class="col-md-3" data-id="'+id+'">'+
             '<div class="card card-2" data-toggle="modal" data-target="#mymodal4">'+
             '<div class="card__top">'+
                       '<img class="card-img-top" style="width:285px; height:250px;" src="'+totalPatients+'">'+
