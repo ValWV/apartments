@@ -48,7 +48,7 @@ function getWaitTimes(){
         
         var htmlOutPut = ''+
           '<div class="col-md-3" data-id="'+id+'">'+
-            '<div class="card card-2" data-toggle="modal" data-target="#mymodal4">'+
+            '<div class="card card-2" data-toggle="modal" data-target="#'+id+'">'+
             '<div class="card__top">'+
                       '<img class="card-img-top" style="width:285px; height:250px;" src="'+totalPatients+'">'+
             '</div>'+
@@ -80,22 +80,19 @@ function getWaitTimes(){
           '</div>'+
 
 
-          '<div id="mymodal4" class="modal fade custom-modal modal5" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">'+
+          '<div id="'+id'+" class="modal fade custom-modal modal5" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">'+
                                     '<div class="modal-dialog modal-lg">'+
                                         '<div class="modal-content po-relative">'+
                                             '<div class="col-lg-6 col-md-4 modal-bg-img" style="background-image: url('+totalPatients+');">'+
                                             '</div>'+
-                                                '<h4 class="modal-title">Апартаменты' + id+'</h4>'+
-                                                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>'+
-                                            '</div>'+
-                                            '<div class="modal-body">'+
-                                                
-                                            '</div>'+
-                                            '<div class="modal-footer">'+
-
-                                            '</div>'+
-                                        '</div>'+
-                                    '</div>'+
+                                             '<div class="col-lg-6 col-md-8">'+
+                                                        '<div class="modal-bg">'+
+                                                               '<h4 class="modal-title">Апартаменты' + id+'</h4>'+
+                                                                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>'+
+                                                         '</div>'+
+                                             '</div>'+
+                                          '</div>'+
+                                      '</div>'+
                                 '</div>'+
           
           '</div>'+
