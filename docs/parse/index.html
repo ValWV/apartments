@@ -40,6 +40,12 @@ function getWaitTimes(){
         var floor = $(this).find('floor').text();
         var floorstotal = $(this).find('floors-total').text();
         var totalPatients = $(this).find('image[tag="plan"]:first').text();
+        var buildingname = $(this).find('building-name').text();
+        var buildingsection = $(this).find('building-section').text();
+        var builtyear = $(this).find('built-year').text();
+        var rooms = $(this).find('rooms').text();
+        
+        
         var htmlOutPut = ''+
           '<div class="col-md-3" data-id="'+id+'">'+
             '<div class="card card-2" data-toggle="modal" data-target="#mymodal4">'+
@@ -77,8 +83,9 @@ function getWaitTimes(){
           '<div id="mymodal4" class="modal fade custom-modal modal5" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">'+
                                     '<div class="modal-dialog modal-lg">'+
                                         '<div class="modal-content po-relative">'+
-                                            '<div class="modal-header">'+
-                                                '<h4 class="modal-title"></h4>'+
+                                            '<div class="col-lg-6 col-md-4 modal-bg-img" style="background-image: url('+totalPatients+');">'+
+                                            '</div>'+
+                                                '<h4 class="modal-title">Апартаменты' + 'id'+</h4>'+
                                                 '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>'+
                                             '</div>'+
                                             '<div class="modal-body">'+
