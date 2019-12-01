@@ -11,7 +11,8 @@
 
   <body>
 
-<div id="filters" class="button-group">  <button class="button is-checked" data-filter="*">show all</button>
+<div id="filters" class="button-group">  
+  <button class="button is-checked" data-filter="*">show all</button>
   <button class="button" data-filter=".metal">Студия</button>
   <button class="button" data-filter=".1">1</button>
   <button class="button" data-filter=".2">2</button>
@@ -44,7 +45,7 @@ function getWaitTimes(){
         var id2 = $(this).find('ID').eq(1).text();
         var idType2 = $(this).find('Type').eq(1).text();
         var Name = $(this).find('address').text();      
-        var cat = $(this).find('category').text();
+        var cat = $(this).find('category').eq(0).text();
         var averageWaitTime = Math.round($(this).find('AverageWaitTime').text()/60);
         var longestWait = Math.round($(this).find('LongestCurrentWaitTime').text()/60);
         var price = $(this).find('price>value').text();
