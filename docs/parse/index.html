@@ -4,8 +4,8 @@
   <head>
   <meta charset="utf-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="https://valwv.github.io/apartments/docs/parse/style.css" rel="stylesheet">
-<link href="https://valwv.github.io/apartments/docs/parse/cards.css" rel="stylesheet">
+<link href="https://valwv.github.io/apartments/css/style.css" rel="stylesheet">
+<link type="text/css" href="https://valwv.github.io/apartments/parse/cards.css" rel="stylesheet">
 </head>
 
 
@@ -37,10 +37,12 @@ function getWaitTimes(){
         var readyquarter = $(this).find('ready-quarter').text();
         var area = $(this).find('area>value').text();
         var lspace = $(this).find('living-space>value').text();
-        var kspace = $(this).find('kitchen-space>value').text();
+        var floor = $(this).find('floor').text();
+        var floorstotal = $(this).find('floors-total').text();
         var totalPatients = $(this).find('image[tag="plan"]:first').text();
         var htmlOutPut = ''+
-          '<div class="col-md-3"><div class="card card-2">'+
+          '<div class="col-md-3">'+
+            '<div class="card card-2 model_img img-responsive" alt="default" data-toggle="modal" data-target="#responsive-modal">'+
             '<div class="card__top">'+
                       '<img class="card-img-top" src="'+totalPatients+'">'+
             '</div>'+
@@ -48,17 +50,48 @@ function getWaitTimes(){
             '<div class="card__body">'+
               '<h4>'+Name+'</h4>'+
               '<h5 data-animation="animated flipInX" class="m-b-10 m-t-0">'+price+'</h5>'+
-              '<div class="text-info m-b-0">'+longestWait+'</div>'+
-              '<div class="waitTimes__minutes">minutes</div>'+              
+              '<div class="text-info m-b-0">'+longestWait+'RUB</div>'+          
             '</div>'+
             '<div class="card__bottom text-center">'+
-            '<div class="card__action">'+readyquarter+'</div>'+
-            '<div class="card__action">'+area+'</div>'+
-            '<div class="card__action">'+lspace+'</div>'+
-            '<div class="card__action">'+kspace+'</div>'+
+            '<div class="card__action">'+
+                '<span class="specifiaction text-muted">Срок сдачи</span>'+
+                '<div class="m-b-0 font-medium">'+readyquarter+'</div>'+
+            '</div>'+
+            '<div class="card__action">'+
+                '<span class="specifiaction text-muted">Общая площадь</span>'+
+                '<div class="m-b-0 font-medium">'+area+'</div>'+
+            '</div>'+
+            '<div class="card__action">'+
+                '<span class="specifiaction text-muted">Жилья площадь</span>'+
+                '<div class="m-b-0 font-medium">'+lspace+'</div>'+
+            '</div>'+
+            '<div class="card__action">'+
+                '<span class="specifiaction text-muted">Этаж</span>'+
+                '<div class="m-b-0 font-medium">'+floor+'из'+floorstotal+'</div>'+
+            '</div>'+
             '</div>'+
          
-          '</div></div>'+
+          '</div>'+
+
+
+          '<div id="responsive-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-right: 16px;" aria-modal="true">'+
+                                    '<div class="modal-dialog">'+
+                                        '<div class="modal-content">'+
+                                            '<div class="modal-header">'+
+                                                '<h4 class="modal-title"></h4>'+
+                                                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>'+
+                                            '</div>'+
+                                            '<div class="modal-body">'+
+                                                
+                                            '</div>'+
+                                            '<div class="modal-footer">'+
+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+          
+          '</div>'+
         '';
         $('.data__sims').append(htmlOutPut);
       });
