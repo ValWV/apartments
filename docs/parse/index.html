@@ -42,7 +42,7 @@ function getWaitTimes(){
         var totalPatients = $(this).find('image[tag="plan"]:first').text();
         var htmlOutPut = ''+
           '<div class="col-md-3">'+
-            '<div class="card card-2 model_img img-responsive" alt="default" data-toggle="modal" data-target="#responsive-modal">'+
+            '<div class="card card-2" data-toggle="modal" data-target="#mymodal4">'+
             '<div class="card__top">'+
                       '<img class="card-img-top" src="'+totalPatients+'">'+
             '</div>'+
@@ -74,8 +74,8 @@ function getWaitTimes(){
           '</div>'+
 
 
-          '<div id="responsive-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-right: 16px;" aria-modal="true">'+
-                                    '<div class="modal-dialog">'+
+          '<div id="mymodal4" class="modal fade custom-modal modal5" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">'+
+                                    '<div class="modal-dialog modal-lg">'+
                                         '<div class="modal-content">'+
                                             '<div class="modal-header">'+
                                                 '<h4 class="modal-title"></h4>'+
