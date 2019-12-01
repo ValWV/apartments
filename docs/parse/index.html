@@ -4,8 +4,8 @@
   <head>
   <meta charset="utf-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="style.css" rel="stylesheet">
-<link href="cards.css" rel="stylesheet">
+<link href="https://raw.githubusercontent.com/ValWV/apartments/master/docs/parse/style.css" rel="stylesheet">
+<link href="https://raw.githubusercontent.com/ValWV/apartments/master/docs/parse/cards.css" rel="stylesheet">
 </head>
 
 
@@ -16,7 +16,65 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
-<script src="parse.js" type="text/javascript"></script>
+<script>
+function getWaitTimes(){
+  $("error").html('loading....');
+  $.ajax({
+    type: "GET",
+    url: "https://raw.githubusercontent.com/ValWV/apartments/master/docs/parse/Feed_2.xml",
+    dataType: "xml",
+    success: function(xml){
+      $xml = $(xml);
+      $($xml).find('realty-feed>offer').each(function(){
+        var id = $(this).find('id').eq(0).text();
+        var idType = $(this).find('type').eq(0).text();
+        var id2 = $(this).find('ID').eq(1).text();
+        var idType2 = $(this).find('Type').eq(1).text();
+        var Name = $(this).find('address').text();
+        var averageWaitTime = Math.round($(this).find('AverageWaitTime').text()/60);
+        var longestWait = Math.round($(this).find('LongestCurrentWaitTime').text()/60);
+        var price = $(this).find('price>value').text();
+        var readyquarter = $(this).find('ready-quarter').text();
+        var area = $(this).find('area>value').text();
+        var lspace = $(this).find('living-space>value').text();
+        var kspace = $(this).find('kitchen-space>value').text();
+        var totalPatients = $(this).find('image[tag="plan"]:first').text();
+        var htmlOutPut = ''+
+          '<div class="col-md-3"><div class="card card-2">'+
+            '<div class="card__top">'+
+                      '<img class="card-img-top" src="'+totalPatients+'">'+
+            '</div>'+
+            
+            '<div class="card__body">'+
+              '<h4>'+Name+'</h4>'+
+              '<h5 data-animation="animated flipInX" class="m-b-10 m-t-0">'+price+'</h5>'+
+              '<div class="text-info m-b-0">'+longestWait+'</div>'+
+              '<div class="waitTimes__minutes">minutes</div>'+              
+            '</div>'+
+            '<div class="card__bottom text-center">'+
+            '<div class="card__action">'+readyquarter+'</div>'+
+            '<div class="card__action">'+area+'</div>'+
+            '<div class="card__action">'+lspace+'</div>'+
+            '<div class="card__action">'+kspace+'</div>'+
+            '</div>'+
+         
+          '</div></div>'+
+        '';
+        $('.data__sims').append(htmlOutPut);
+      });
+    },
+    error: function(err){
+      $('.error').html('error: '+err);
+    }
+  });
+}
+
+$(document).ready(function() {
+  getWaitTimes();
+});
+
+
+</script>
   </body>
 
 </html>

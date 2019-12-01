@@ -33,7 +33,7 @@ function getWaitTimes(){
             '<div class="waitTimes__other">id type2: '+idType2+'</div>'+
             '<div class="bg-light slide-content specifiaction-box"> <div class="row"> '+
             '<div class="col-6">longest wait: '+longestWait+'</div>'+
-            '<div class="col-6">patients waiting: '+patientsWaiting+'</div></div></div>'+
+            '<div class="col-6">patients waiting: </div></div></div>'+
             
           '</div>'+
         '';
