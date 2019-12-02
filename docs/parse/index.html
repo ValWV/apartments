@@ -29,7 +29,7 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-  
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>  
 <script>
 function getWaitTimes(){
   $("error").html('loading....');
@@ -62,7 +62,7 @@ function getWaitTimes(){
         var rooms = $(this).find('rooms').text();
         
         
-        var htmlOutPut = ''+
+        $htmlOutPut = ''+
           '<div class="col-md-4 element-item '+rooms+'" data-id="'+id+'" data-category="'+rooms+'">'+
             '<div class="card card-2" data-toggle="modal" data-target="#item'+id+'">'+
             '<div class="card__top">'+
@@ -139,7 +139,7 @@ function getWaitTimes(){
           
           '</div>'+
         '';
-        $('.data__sims').append(htmlOutPut);
+        $('.data__sims').append($htmlOutPut);
       });
     },
     error: function(err){
@@ -153,11 +153,9 @@ $(document).ready(function() {
 });
 
 
-</script>
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script> 
-<script>    
+ 
  // external js: isotope.pkgd.js
- var $items = $(html);
+ var $items = $htmlOutPut;
 
 //Add item to isotope
 
