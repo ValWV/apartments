@@ -156,20 +156,16 @@ $(document).ready(function() {
 </script>
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script> 
 <script>    
-  // init Isotope
-var $grid = $('.grid').isotope({
+ // external js: isotope.pkgd.js
+ var $items = $(html);
+
+//Add item to isotope
+
+
+// init Isotope
+var $grid = $('.grid').isotope( 'insert', $items )({
   itemSelector: '.element-item',
   layoutMode: 'fitRows',
-  getSortData: {
-    name: '.name',
-    symbol: '.symbol',
-    number: '.number parseInt',
-    category: '[data-category]',
-    weight: function( itemElem ) {
-      var weight = $( itemElem ).find('.weight').text();
-      return parseFloat( weight.replace( /[\(\)]/g, '') );
-    }
-  }
 });
 
 // filter functions
@@ -192,10 +188,10 @@ $('#filters').on( 'click', 'button', function() {
   // use filterFn if matches value
   filterValue = filterFns[ filterValue ] || filterValue;
   $grid.isotope({ filter: filterValue });
-});  
-  
-  
-  // change is-checked class on buttons
+});
+
+
+// change is-checked class on buttons
 $('.button-group').each( function( i, buttonGroup ) {
   var $buttonGroup = $( buttonGroup );
   $buttonGroup.on( 'click', 'button', function() {
@@ -203,6 +199,8 @@ $('.button-group').each( function( i, buttonGroup ) {
     $( this ).addClass('is-checked');
   });
 });
+  
+
     </script>    
     
 
