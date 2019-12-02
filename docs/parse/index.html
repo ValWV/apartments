@@ -62,7 +62,7 @@ function getWaitTimes(){
         var rooms = $(this).find('rooms').text();
         
         
-        $htmlOutPut = ''+
+        var htmlOutPut = ''+
           '<div class="col-md-4 element-item '+rooms+'" data-id="'+id+'" data-category="'+rooms+'">'+
             '<div class="card card-2" data-toggle="modal" data-target="#item'+id+'">'+
             '<div class="card__top">'+
@@ -139,7 +139,7 @@ function getWaitTimes(){
           
           '</div>'+
         '';
-        $('.data__sims').append($htmlOutPut);
+        $('.data__sims').append(htmlOutPut);
       });
     },
     error: function(err){
@@ -155,13 +155,13 @@ $(document).ready(function() {
 
  
  // external js: isotope.pkgd.js
- var $items = $htmlOutPut;
+
 
 //Add item to isotope
 
 
 // init Isotope
-var $grid = $('.grid').isotope( 'insert', $items )({
+var $grid = $('.grid').isotope()({
   itemSelector: '.element-item',
   layoutMode: 'fitRows',
 });

@@ -212,7 +212,7 @@ width:150px;
 
       <h1>Апартаменты</h1>
     </div>
-    <div id='listings' class='listings1'></div>
+    <div id='listings' class='row listings1'></div>
   </div>
   <div id='mfe-top100' class='map-top100'> </div>
 </div>
@@ -1157,9 +1157,15 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiaGFubGV5d29vZCIsImEiOiJZcVlldnlRIn0.BHYD98R8U
     var popup ='<img src="' + prop.image + '" />' +'<div class="marker-title">'+ prop.property + '</div>';
 
     var listing = listings.appendChild(document.createElement('div'));
-    listing.className = 'item';
+    listing.className = 'item col-lg-12 col-md-12';
 
-    var link = listing.appendChild(document.createElement('a'));
+
+
+    var listingitem = listing.appendChild(document.createElement('div'));
+    listingitem.className = 'listing-item-container list-layout';
+
+
+    var link = listingitem.appendChild(document.createElement('a'));
     link.href = '#';
     link.className = 'title';
 
