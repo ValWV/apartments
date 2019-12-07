@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css">
-<link rel="stylesheet" type="text/css" href="/bitrix/templates/gp_real_estate_lite/bootstrap.css" />
+<link rel="stylesheet" href="https://valwv.github.io/apartments/maps/maplisting.css" />
 
 <!-- custom -->
 <link href="/bitrix/templates/gp_real_estate_lite/css/custom.css" rel="stylesheet">
@@ -210,9 +210,9 @@ width:150px;
   <div class='sidebar'>
     <div class='heading'>
 
-      <h1>Апартаменты</h1>
+
     </div>
-    <div id='listings' class='row listings1'></div>
+    <div id='listings' class='row fs-listings listings1'></div>
   </div>
   <div id='mfe-top100' class='map-top100'> </div>
 </div>
@@ -1157,9 +1157,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiaGFubGV5d29vZCIsImEiOiJZcVlldnlRIn0.BHYD98R8U
     var popup ='<img src="' + prop.image + '" />' +'<div class="marker-title">'+ prop.property + '</div>';
 
     var listing = listings.appendChild(document.createElement('div'));
-    listing.className = 'item col-lg-12 col-md-12';
-
-
+    listing.className = 'col-lg-12 col-md-12';
 
     var listingitem = listing.appendChild(document.createElement('div'));
     listingitem.className = 'listing-item-container list-layout';
@@ -1167,19 +1165,24 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiaGFubGV5d29vZCIsImEiOiJZcVlldnlRIn0.BHYD98R8U
 
     var link = listingitem.appendChild(document.createElement('a'));
     link.href = '#';
-    link.className = 'title';
+    link.className = 'listing-item';
+
+
+    var listingimg = link.appendChild(document.createElement('div'));
+    listingimg.className = 'listing-item-image';
+    
+    listingimg.innerHTML = '<img src="' + prop.property + '" />';
+
 
     link.innerHTML = prop.property;
     if (prop.crossStreet) {
-      link.innerHTML += '</br><small class="quiet">'+ prop.country + ', ' + prop.ora + ', ' + prop.crossStreet + '</small>';
+      link.innerHTML += '<div class="listing-item-content">'+
+      '<h5>'+ prop.firm + '</h5>'+
+      '<span>'+ prop.country + ', ' + prop.ora + ', ' + prop.crossStreet + '</span></div>';
       popup += '<div class="marker-description">' + prop.crossStreet + ', ' + prop.ora + '</div>' + '<br>' + '<small class="box">Rank: ' + prop.rank + '</small>' + '<br>' + '<h4 class="box">' + prop.firm + '</h4>';
     }
 
-    var details = listing.appendChild(document.createElement('div'));
-    details.innerHTML = prop.firm;
-    if (prop.websiteURL) {
-      details.innerHTML;
-    }
+
 
     link.onclick = function() {
       setActive(listing);
