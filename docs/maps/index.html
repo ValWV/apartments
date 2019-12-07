@@ -139,21 +139,13 @@
     visibility:hidden;
   }
       
-    img {
-    max-width:201px;
-    height:auto;
-    border-radius:3px 3px 0px 0px;
-    }
+
 
   /* Marker tweaks */
   .leaflet-popup-close-button {
     display:none;
   }
-  .leaflet-popup-content {
-    font:400 15px/22px 'Roboto Slab', 'Georgia', Sans-serif;
-    padding:0;
-    width:200px;
-  }
+
   .leaflet-popup-content-wrapper {
     padding:0;
   }
@@ -1162,7 +1154,10 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiaGFubGV5d29vZCIsImEiOiJZcVlldnlRIn0.BHYD98R8U
     var prop = locale.feature.properties;
 
     // Each marker on the map.
-    var popup ='<img src="' + prop.image + '" />' +'<div class="marker-title">'+ prop.property + '</div>';
+    var popup ='<div class="leaflet-popup-content">'+
+    '<img src="https://cutestdogsonline.com/wp-content/uploads/2015/08/Petsfit-28-X-30-X-30-Inches-Wooden-Dog-House-Dog-House-OutdoorPainted-With-Water-Based-Paint-0.jpg" />' +
+    '<a href="" class="leaflet-listing-img-container">'+
+    '<div class="marker-title">'+ prop.property + '</div></div></div>';
 
     var listing = listings.appendChild(document.createElement('div'));
     listing.className = 'col-lg-12 col-md-12';

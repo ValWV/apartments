@@ -266,3 +266,20 @@ section.fullwidth .listing-item-container.list-layout,
 	font-size: 14px;
 }
 
+
+
+.leaflet-popup-content-wrapper {
+    background: #fff;
+    color: #333;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.12);
+}
+.leaflet-listing-img-container {
+    position: relative;
+    height: 210px;
+    display: block;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.leaflet-popup-content {
+    width: 270px;
+}
