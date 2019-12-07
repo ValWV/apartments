@@ -1155,9 +1155,9 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiaGFubGV5d29vZCIsImEiOiJZcVlldnlRIn0.BHYD98R8U
 
     // Each marker on the map.
     var popup ='<div class="leaflet-popup-content">'+
-    '<img src="https://cutestdogsonline.com/wp-content/uploads/2015/08/Petsfit-28-X-30-X-30-Inches-Wooden-Dog-House-Dog-House-OutdoorPainted-With-Water-Based-Paint-0.jpg" />' +
     '<a href="" class="leaflet-listing-img-container">'+
-    '<div class="marker-title">'+ prop.property + '</div></div></div>';
+    '<img src="https://cutestdogsonline.com/wp-content/uploads/2015/08/Petsfit-28-X-30-X-30-Inches-Wooden-Dog-House-Dog-House-OutdoorPainted-With-Water-Based-Paint-0.jpg">'+
+    '</div></div>';
 
     var listing = listings.appendChild(document.createElement('div'));
     listing.className = 'col-lg-12 col-md-12';
@@ -1182,7 +1182,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiaGFubGV5d29vZCIsImEiOiJZcVlldnlRIn0.BHYD98R8U
       link.innerHTML += '<div class="listing-item-content"><div class="listing-item-inner">'+
       '<h5>'+ prop.firm + '</h5>'+
       '<span>'+ prop.country + ', ' + prop.ora + ', ' + prop.crossStreet + '</span></div></div>';
-      popup += '<div class="marker-description">' + prop.crossStreet + ', ' + prop.ora + '</div>' + '<br>' + '<small class="box">Rank: ' + prop.rank + '</small>' + '<br>' + '<h4 class="box">' + prop.firm + '</h4>';
+      popup += '<div class="leaflet-listing-title">' + prop.crossStreet + ', ' + prop.ora + '</div>' + '<br>' + '<small class="box">Rank: ' + prop.rank + '</small>' + '<br>' + '<h4 class="box">' + prop.firm + '</h4>';
     }
 
 
