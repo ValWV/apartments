@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css">
 <link rel="stylesheet" href="https://valwv.github.io/apartments/maps/maplisting.css" />
-
+<link href="http://www.vasterad.com/themes/listeo_082019/css/bootstrap-grid.css" rel="stylesheet">
 <!-- custom -->
 <link href="/bitrix/templates/gp_real_estate_lite/css/custom.css" rel="stylesheet">
 
@@ -206,14 +206,22 @@ width:150px;
 
 
 
+			<!-- Search -->
+			
+			<!-- Search / End -->
+
+
+		<section class="listings-container margin-top-30">
+
 <div class="scoped-top100 body-top100">
+ 
   <div class='sidebar'>
-    <div class='heading'>
+    <div class="fs-container">
 
-
-    </div>
+      <div class="fs-inner-container content">
+        <div class="fs-content">
     <div id='listings' class='row fs-listings listings1'></div>
-  </div>
+  </div></div></div></div>
   <div id='mfe-top100' class='map-top100'> </div>
 </div>
 
@@ -1171,14 +1179,14 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiaGFubGV5d29vZCIsImEiOiJZcVlldnlRIn0.BHYD98R8U
     var limg = link.appendChild(document.createElement('div'));
     limg.className = 'listing-item-image';
     
-    limg.innerHTML += '<img src="' + prop.property + '" />';
+    limg.innerHTML += '<img src="' + prop.image + '" />';
 
 
     //link.innerHTML = prop.property;
     if (prop.crossStreet) {
-      link.innerHTML += '<div class="listing-item-content">'+
+      link.innerHTML += '<div class="listing-item-content"><div class="listing-item-inner">'+
       '<h5>'+ prop.firm + '</h5>'+
-      '<span>'+ prop.country + ', ' + prop.ora + ', ' + prop.crossStreet + '</span></div>';
+      '<span>'+ prop.country + ', ' + prop.ora + ', ' + prop.crossStreet + '</span></div></div>';
       popup += '<div class="marker-description">' + prop.crossStreet + ', ' + prop.ora + '</div>' + '<br>' + '<small class="box">Rank: ' + prop.rank + '</small>' + '<br>' + '<h4 class="box">' + prop.firm + '</h4>';
     }
 

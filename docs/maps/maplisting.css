@@ -1,3 +1,13 @@
+.fs-inner-container.content {
+    width: 55%;
+    background-color: #f7f7f7;
+    z-index: 995;
+    box-shadow: 0 0 12px 0 rgba(0,0,0,.12);
+    position: relative;
+    padding-top: 80px;
+}
+
+
 /* ---------------------------------- */
 /* Listing Item Layout Style
 ------------------------------------- */
@@ -109,7 +119,6 @@
 /*	background: linear-gradient(to top, #f4f4f4 0%, #f9f9f9 10%); */
 	background-color: #f6f6f6;
 	display: block;
-	height: 100%;
 	width: 100%;
 	border-radius: 4px;
 	transform: translate3d(0,0,0);
