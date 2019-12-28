@@ -1,22 +1,3 @@
-
-<link rel="stylesheet" href="https://www.vasterad.com/themes/listeo_082019/css/style.css">
-
-
-<div id="map-container">
-        <div id="map" data-map-scroll="true">
-</div>
-</div>
-
-<script src="http://www.vasterad.com/themes/listeo_082019/scripts/jquery-3.4.1.min.js"></script>
-
-
-
-<!-- Make sure you put this AFTER Leaflet's CSS -->
- <script src="http://www.vasterad.com/themes/listeo_082019/scripts/leaflet.min.js"></script>
-
-<!-- Leaflet Maps Scripts -->
-<script src="http://www.vasterad.com/themes/listeo_082019/scripts/leaflet-markercluster.min.js"></script>
-
 <script>
 $(document).ready(function(){if(document.getElementById("map")!==null){
     if($('#map').attr('data-map-scroll')=='true'||$(window).width()<992){
@@ -27,21 +8,24 @@ window.map=L.map('map',mapOptions);
 
 $('#scrollEnabling').hide();
 
-function locationData(locationURL,locationImg,locationTitle,locationAddress,locationRating,locationRatingCounter){return(''+
-'<a href="'+locationURL+'" class="leaflet-listing-img-container">'+
-'<div class="infoBox-close"><i class="fa fa-times"></i></div>'+
-'<img src="'+locationImg+'" alt="">'+
-'<div class="leaflet-listing-item-content">'+
-'<h3>'+locationTitle+'</h3>'+
-'<span>'+locationAddress+'</span>'+
-'</div>'+
-'</a>'+
+function locationData(locationURL,locationImg,locationTitle,locationAddress,locationRating,locationRatingCounter){
+    return(''+
+    '<a href="'+locationURL+'" class="leaflet-listing-img-container">'+
+            '<a href="'+locationURL+'" class="leaflet-listing-img-container">'+
+                    '<a href="'+locationURL+'" class="leaflet-listing-img-container">'+
+                            '<div class="infoBox-close"><i class="fa fa-times"></i></div>'+
+                            '<img src="'+locationImg+'" alt="">'+
+                            '<div class="leaflet-listing-item-content">'+
+                                    '<h3>'+locationTitle+'</h3>'+
+                                    '<span>'+locationAddress+'</span>'+
+                            '</div>'+
+                    '</a>'+
 '<div class="leaflet-listing-content">'+
 '<div class="leaflet-listing-title">'+
-'<div class="'+infoBox_ratingType+'" data-rating="'+locationRating+'"><div class="rating-counter">('+locationRatingCounter+' reviews)</div></div>'+
+'<div class="'+infoBox_ratingType+'" data-rating="'+locationRating+'">'+
+'<div class="rating-counter">('+locationRatingCounter+' reviews)</div></div>'+
 '</div>'+
 '</div>')}
-
 
 
 var infoBox_ratingType='star-rating';
@@ -155,5 +139,5 @@ $('a#streetView').attr({href:'https://www.google.com/maps/search/?api=1&query='+
 
 if(document.getElementById("singleListingMap")!==null){singleListingMap();}});
 
-</script>
 
+</script>
