@@ -1,0 +1,1277 @@
+<link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css">
+<link rel="stylesheet" href="https://valwv.github.io/apartments/maps/maplisting.css" />
+<link href="http://www.vasterad.com/themes/listeo_082019/css/bootstrap-grid.css" rel="stylesheet">
+<!-- custom -->
+
+<link href="/bitrix/templates/gp_real_estate_lite/css/custom.css" rel="stylesheet">
+
+<!-- theme -->
+<link href="/bitrix/templates/gp_real_estate_lite/css/style.css" rel="stylesheet">
+
+
+ <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js"></script>
+
+
+
+<style>
+
+  * {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+  }
+
+  .body-top100 {
+    color:#404040;
+ 
+    margin:0;
+    padding:0;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1 {
+    font-size:20px;
+    margin:0;
+    font-weight:400;
+  }
+  a {
+    color:#404040;
+    text-decoration:none;
+  }
+  a:hover { color:#101010; }
+
+  .sidebar {
+    position:absolute;
+    width:45%;
+    height:100%;
+    top:0;left:0;
+    overflow:hidden;
+    border-right:1px solid rgba(0,0,0,0.25);
+  }
+  .pad2 {
+    padding:20px;
+  }
+  .quiet {
+    color:#888;
+  }
+      .boxtop {
+    padding-left:10px;
+    padding-top:10px;
+    white-space: pre-wrap;
+    display:inline-block;
+  }
+.box {
+    padding-left:10px;
+    padding-top:5px;
+/*    padding-bottom: 10px;*/
+    white-space: pre-wrap;
+    display:inline-block;
+    font-weight: normal;
+  }
+      .url {
+    padding-left:10px;
+/*    padding-top:5px;*/
+    padding-bottom: 10px;
+    white-space: pre-wrap;
+    display:inline-block;
+    font-weight: normal;
+  }
+
+  .map-top100 {
+    position: absolute;
+    left:45%;
+    width:55%;
+    top:0;bottom:0;
+
+  }
+
+  .heading {
+    background:#fff;
+    border-bottom:1px solid #eee;
+    height:60px;
+    line-height:60px;
+    padding:0 10px;
+  }
+  .listings1 {
+    height:100%;
+    overflow:auto;
+    padding-bottom:100px;
+  }
+  .listings1 .item {
+    display:block;
+    border-bottom:1px solid #eee;
+    padding:10px;
+    text-decoration:none;
+  }
+  .listings1 .item:last-child { border-bottom:none; }
+  .listings1 .item .title {
+    display:block;
+    color:#00aced;
+    font-weight:600;
+  }
+  .listings1 .item .title small { font-weight:400; }
+  .listings1 .item.active .title,
+  .listings1 .item .title:hover { color:#0491c6; }
+  .listings1 .item.active {
+    background-color:#f8f8f8;
+  }
+
+  ::-webkit-scrollbar {
+    width:8px;
+    height:3px;
+    border-left:0;
+    background:rgba(0,0,0,0.1);
+  }
+  ::-webkit-scrollbar-track {
+    background:none;
+  }
+  ::-webkit-scrollbar-thumb {
+    background:#00aced;
+    border-radius:0;
+  }
+
+  .clearfix { display:block; }
+  .clearfix:after {
+    content:'.';
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+  }
+      
+
+
+  /* Marker tweaks */
+  .leaflet-popup-close-button {
+    display:none;
+  }
+
+  .leaflet-popup-content-wrapper {
+    padding:0;
+  }
+      
+      .leaflet-popup-close-button+.leaflet-popup-content-wrapper .leaflet-popup-content{
+  
+       padding-top: 0px !important;   
+      }
+      
+  .leaflet-popup-content h3 {
+    background:#00aced;
+    color:#fff;
+    margin:0;
+    display:block;
+    padding:18px 10px 10px 10px;
+/*    border-radius:3px 3px 0 0;*/
+    font-weight:700;
+    margin-top:-15px;
+  }
+  .leaflet-popup-content {
+    padding:0px;
+  }
+  .leaflet-container .leaflet-marker-icon { 
+    cursor: pointer; 
+    max-width: 50px !important; 
+    max-height: 50px;
+  }
+  .leaflet-marker-icon .clicked{
+    border: 7px solid #f91942;
+    opacity: .2;
+    box-shadow: inset 0 0 0 4px #f91942;
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: cluster-animation 2.5s infinite;
+}
+  .leaflet-container img.leaflet-marker-icon {
+    max-width: 35px !important; 
+    max-height: 35px;
+  }
+@media only screen and (max-width: 460px) {
+    h1{
+    font-size: 16px;
+    }
+    .leaflet-popup-content {
+    font:400 15px/15px 'Roboto Slab', 'Georgia', Sans-serif;
+    padding:0;
+    width:150px;
+  }
+    img{
+width:150px;
+    }
+    .sidebar {
+    display:none;
+  }
+     .map-top100 {
+    position:absolute;
+    left:0 !important;
+    width:100%;
+    top:0;bottom:0;
+  }
+}
+</style>
+
+
+
+
+
+			<!-- Search -->
+			
+			<!-- Search / End -->
+
+
+		<section class="listings-container margin-top-30">
+
+<div class="scoped-top100 body-top100">
+ 
+  <div class='sidebar'>
+    <div class="fs-container">
+
+      <div class="fs-inner-container content">
+        <div class="fs-content">
+            <section class="search">
+
+                <div class="row">
+                  <div class="col-md-12">
+        
+                      <!-- Row With Forms -->
+                      <div class="row with-forms">
+        
+                        <!-- Main Search Input -->
+                        <div class="col-fs-6">
+                          <div class="input-with-icon">
+                            <i class="sl sl-icon-magnifier"></i>
+                            <input type="text" placeholder="Адрес" value="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+
+    <div id='listings' class='row fs-listings listings1'></div>
+  </div></div></div></div>
+  <div id='mfe-top100' class='map-top100'> </div>
+</div>
+
+
+<script>
+
+L.mapbox.accessToken = 'pk.eyJ1IjoiaGFubGV5d29vZCIsImEiOiJZcVlldnlRIn0.BHYD98R8UQQoUBLsNd8ksg';
+
+  var geojson = [
+      {
+"type": "FeatureCollection",
+"features": 
+				[
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+29.9541712,   
+60.11515259
+      ]
+    },
+    "properties": {
+      "image": "",
+      "websiteText": "",
+      "url":"",
+      "property": "Русские сезоны",
+      "firm": "RBI",
+      "country": "Санкт-Петербург",
+      "crossStreet": "ул. М. Горького, д. 2",
+      "rank": "",
+      "ora": "",
+      "state": "г. Сестрорецк",
+       "icon": "http://images.hw.net/Brightspot/Architect/Interactives/2015/15May/Atlanta_Locator_Map/store-locator-final/markerblue.png"
+    }
+  },
+
+
+   {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Valo",
+    "firm": "Галс",
+    "crossStreet": "улица Салова, д. 61",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Фрунзенский",
+    "state": "Бухарестская",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.36894902,59.88534414]
+      }
+    },
+
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Дом на Львовской",
+    "firm": "Мегалит-Охта Групп",
+    "crossStreet": "ул. Львовская, д. 21",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Красногвардейский",
+    "state": "Площадь Ленина",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.4193341,59.97067614]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Next",
+    "firm": "Еврострой",
+    "crossStreet": "Средний проспект В.О., д. 87",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Василеостровский",
+    "state": "Василеостровская",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.24876366,59.93815119]
+      }
+    },
+
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "START",
+    "firm": "PSK",
+    "crossStreet": "пр-кт Энгельса, д. 174",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Выборгский",
+    "state": "Парнас",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.34278671,60.07188166]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "IN2IT",
+    "firm": "ЮИТ",
+    "crossStreet": "пр-кт Витебский",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Московский",
+    "state": "Купчино",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.37294479,59.8296205]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Like",
+    "firm": "PSK",
+    "crossStreet": "ул. Политехническая, д. 6",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Выборгский",
+    "state": "Площадь Мужества",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.35697078,59.99345642]
+      }
+    },
+    {
+    "type": "Feature",
+    "properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Studio Moskovsky",
+    "firm": "RBI",
+    "crossStreet": "ул. Заозёрная, д. 1",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Московский",
+    "state": "Фрунзенская",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.32272545,59.90653018]
+      }
+    },
+    {
+    "type": "Feature",
+    "properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "М97",
+    "firm": "М97 Инвест",
+    "crossStreet": "пр-кт Московский, д. 97",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Московский",
+    "state": "Московские ворота",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.31674156,59.89383117]
+      }
+    },
+    {
+    "type": "Feature",
+    "properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "NEOPARK",
+    "firm": "ЛСР",
+    "crossStreet": "ш. Московское, д. 3",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Московский",
+    "state": "Звездная",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.33108329,59.83339582]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "AVENUE-APART на Дыбенко",
+    "firm": "E3 Group",
+    "crossStreet": "пр-кт Товарищевский",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Невский",
+    "state": "Улица Дыбенко",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.49613168,59.90441389]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Salut",
+    "firm": "Союз-Строй Инвест",
+    "crossStreet": "пр-кт Дунайский",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Московский",
+    "state": "Звездная",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.33090608,59.83141592]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "ArtLine в Приморском",
+    "firm": "SetlCity",
+    "crossStreet": "дор. Торфяная",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Приморский",
+    "state": "Старая деревня",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.26059756,59.99415165]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Zoom Apart",
+    "firm": "ФСК Лидер",
+    "crossStreet": "пр-кт Коломяжский, д. 4",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Приморский",
+    "state": "Черная речка",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.29139502,59.99001881]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Про.Молодость",
+    "firm": "Plaza Lotus Group",
+    "crossStreet": "пр. Большевиков",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Невский",
+    "state": "Улица Дыбенко",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.49269718,59.89418791]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Первая линия",
+    "firm": "ГК Пионер",
+    "crossStreet": "ш. Приморское, д. 502",
+    "country": "Санкт-Петербург",
+    "rank": "п. Комарово",
+    "ora": "Курортный",
+    "state": "Старая деревня",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [29.75376606,60.18423409]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Docklands",
+    "firm": "Docklands",
+    "crossStreet": "наб. Макарова",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Василеостровский",
+    "state": "Приморская",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.24669455,59.95722787]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "PROMENADE",
+    "firm": "Аквилон-Инвес",
+    "crossStreet": "пр-кт Московский, д. 65",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Московский",
+    "state": "Фрунзенская",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.31355187,59.90642658]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Royal Park",
+    "firm": "KORTROS",
+    "crossStreet": "пр-кт Петровский, д. 2",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Петроградский",
+    "state": "Спортивная",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.28025815,59.95295528]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Acqualina",
+    "firm": "Acqualina Development",
+    "crossStreet": "Подъездной пер., 13А",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Адмиралтейский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.333792,59.917228]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "ArtStudio",
+    "firm": "RBI",
+    "crossStreet": "2-я Советская ул., д 4",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Центральный",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.3570192,59.933154]
+      }
+    },
+    {
+    "type": "Feature",
+    "properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Avatar",
+    "firm": "Строительный трест",
+    "crossStreet": "Ремесленная ул., 21",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Петроградский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2630604,59.9560392]
+      }
+    },
+    {
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Avenue Apart на Дыбенко",
+    "firm": "Р-Фикс",
+    "crossStreet": "Товарищеский пр., 19",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Невский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.5015051,59.904578]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Avenue Apart на Малом",
+    "firm": "БестЪ",
+    "crossStreet": "Малый проспект Васильевского острова, д. 54 к.2",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Василеостровский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2170367,59.9636184]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "CRUISE APART",
+    "firm": "Seven Suns Development",
+    "crossStreet": "ул. Вадима Шефнера",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Василеостровский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2038487,59.9368095]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Grani",
+    "firm": "Строительный трест",
+    "crossStreet": "Большая Зеленина ул., 24",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Петроградский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2848874,59.9636393]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "OSTROV",
+    "firm": "Строительный трест",
+    "crossStreet": "",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates":  [30.3222903,59.8313697]      
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Status By Salut",
+    "firm": "Союз Строй Инвест",
+    "crossStreet": "Пулковское ш., 14",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Московский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.3222903,59.8313697]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "The ONE",
+    "firm": "Setl City",
+    "crossStreet": "Петровский пр., 26",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Петроградский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2241938,59.9839218]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "Vertical на Лесной",
+    "firm": "NAI Becar",
+    "crossStreet": "",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.3222903,59.8313697]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Wings",
+    "firm": "СК Монолит",
+    "crossStreet": "ул. Крыленко, 14",
+    "country": "Санкт-Петербург",
+    "rank": "Весёлый пос.",
+    "ora": "Невский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2589242,59.9385945]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "YE’S MARATA",
+    "firm": "Пионер",
+    "crossStreet": "Социалистическая ул., 21",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Центральный",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.3436881,59.9203704]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Граф Орлов",
+    "firm": "Л1",
+    "crossStreet": "Московский пр-т., 185",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Московский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2433906,59.9056573]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Елагин апарт",
+    "firm": "Атлант",
+    "crossStreet": "ул. Савушкина, 104",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Приморский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2475933,59.983974]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Лахта Парк",
+    "firm": "Конкорд Менеджмент и Консалтинг",
+    "crossStreet": "Новая ул., 51,к 26",
+    "country": "Санкт-Петербург",
+    "rank": "Лахта",
+    "ora": "",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.1604667,59.9938102]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+    "property": "ArtStudio Nevsky",
+    "firm": "RBI",
+    "crossStreet": "2-я Советская ул., д. 4",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Центральный",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.3635813,59.93315]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Crystal",
+    "firm": "Apriori Development Group",
+    "crossStreet": "Приморское шоссе, д. 424",
+    "country": "Санкт-Петербург",
+    "rank": "пос. Репино",
+    "ora": "",
+    "state": "",     
+    "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [29.8567564,60.163616]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "LOFT NA SREDNEM",
+    "firm": "Docklands",
+    "crossStreet": "Средний пр-кт, д.83",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Василеостровский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2521206,59.9363279]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Vertical на Московском",
+    "firm": "NAI Becar",
+    "crossStreet": "Московский пр-т., 73",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Адмиралтейский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2589243,59.9386316]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Prime Residence",
+    "firm": "Yard Group",
+    "crossStreet": "Херсонская ул., 43/12, лит. А",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Центральный",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.3826657,59.9267696]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Апартамент-отель в Зеленогорске",
+    "firm": "Стрела",
+    "crossStreet": "Приморское ш., 549A",
+    "country": "Санкт-Петербург",
+    "rank": "Зеленогорск",
+    "ora": "",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [29.6946535,60.1927313]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Голландия",
+    "firm": "РГС-Недвижимость",
+    "crossStreet": "наб. Адмиралтейского канала, 15",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Адмиралтейский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2865543,59.930656]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Крестовский 12",
+    "firm": "Терра",
+    "crossStreet": "Крестовский пр., 12",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Петроградский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2686933,59.969436]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Монферран",
+    "firm": "Интеко",
+    "crossStreet": "Конногвардейский б-р, 5",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Адмиралтейский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2466616,59.9687638]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Москва",
+    "firm": "Setl City",
+    "crossStreet": "ул. Костюшко, 19",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Московский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.2486284,59.8729812]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Нарвский Посад",
+    "firm": "Технобалтснаб",
+    "crossStreet": "пр. Бакунина, 29",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Центральный",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.3824173,59.930752]
+      }
+    },
+{
+    "type": "Feature","properties": {
+    "image": "",
+    "websiteText": "",
+    "url":"",
+
+    "property": "Небо Москвы",
+    "firm": "Лидер Групп",
+    "crossStreet": "Смоленская ул., 18",
+    "country": "Санкт-Петербург",
+    "rank": "",
+    "ora": "Московский",
+    "state": "",     "icon": "address.png"
+},
+    "geometry": {
+"type": "Point",
+"coordinates": [30.3229331,59.904801]
+  }
+},       
+    
+]
+      }
+  ];
+
+
+
+  var map = L.mapbox.map('mfe-top100', 'mapbox.streets')
+  .setView([59.932,30.324], 11);  
+      
+
+  var listings = document.getElementById('listings');
+  var locations = L.mapbox.featureLayer().addTo(map);
+
+  locations.setGeoJSON(geojson);
+
+  function setActive(el) {
+    var siblings = listings.getElementsByTagName('div');
+    for (var i = 0; i < siblings.length; i++) {
+      siblings[i].className = siblings[i].className
+      .replace(/active/, '').replace(/\s\s*$/, '');
+    }
+
+    el.className += ' active';
+  }
+
+  locations.eachLayer(function(locale) {
+
+    // Shorten locale.feature.properties to just `prop` so we're not
+    // writing this long form over and over again.
+    var prop = locale.feature.properties;
+
+    // Each marker on the map.
+    var popup ='<div class="leaflet-popup-content">'+
+    '<a href="" class="leaflet-listing-img-container">'+
+    '<img src="https://cutestdogsonline.com/wp-content/uploads/2015/08/Petsfit-28-X-30-X-30-Inches-Wooden-Dog-House-Dog-House-OutdoorPainted-With-Water-Based-Paint-0.jpg">'+
+    '</a></div>';
+
+    var listing = listings.appendChild(document.createElement('div'));
+    listing.className = 'col-lg-12 col-md-12';
+
+    var listingitem = listing.appendChild(document.createElement('div'));
+    listingitem.className = 'listing-item-container list-layout';
+
+
+    var link = listingitem.appendChild(document.createElement('a'));
+    link.href = '#';
+    link.className = 'listing-item';
+
+
+    var limg = link.appendChild(document.createElement('div'));
+    limg.className = 'listing-item-image';
+    
+    limg.innerHTML += '<img src="' + prop.image + '" />';
+
+
+    //link.innerHTML = prop.property;
+    if (prop.crossStreet) {
+      link.innerHTML += '<div class="listing-item-content"><div class="listing-item-inner">'+
+      '<h5>'+ prop.firm + '</h5>'+
+      '<span>'+ prop.country + ', ' + prop.ora + ', ' + prop.crossStreet + '</span></div></div>';
+      
+      popup += '<div class="leaflet-listing-title">'+ 
+      '<h5>'+ prop.firm + '</h5>'+
+      '<span>'+ prop.country + ', ' + prop.ora + ', ' + prop.crossStreet + '</span>';
+    }
+
+
+
+    link.onclick = function() {
+      setActive(listing);
+
+      // When a menu item is clicked, animate the map to center
+      // its associated locale and open its popup.
+      map.setView(locale.getLatLng(), 16);
+      locale.openPopup();
+      return false;
+    };
+
+    // Marker interaction
+    locale.on('click', function(e) {
+      // 1. center the map on the selected marker.
+      map.panTo(locale.getLatLng());
+
+      // 2. Set active the markers associated listing.
+      setActive(listing);
+    });
+
+    popup += '</div>';
+    locale.bindPopup(popup);
+
+    
+
+    locale.setIcon(L.icon({
+    iconUrl: 'address.png',
+    iconSize: [40, 40],
+    iconAnchor: [28, 28],
+    className : 'marker',
+    popupAnchor: [0, -34]
+    }));
+    
+});
+ 
+ 
+
+
+ 
+ </script>
+
+
+
+
