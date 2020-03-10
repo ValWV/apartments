@@ -15,7 +15,7 @@
  <script src="https://www.vasterad.com/themes/listeo_082019/scripts/leaflet.min.js"></script>
 
 <!-- Leaflet Maps Scripts -->
-<script src="https://raw.githubusercontent.com/ValWV/apartments/master/docs/mapsv1/cluster.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
 
 <script>
 $(document).ready(function(){if(document.getElementById("map")!==null){
@@ -103,7 +103,8 @@ marker.on('click',function(e){});
 map.on('popupopen',function(e){L.DomUtil.addClass(e.popup._source._icon,'clicked');}).on('popupclose',function(e){if(e.popup){L.DomUtil.removeClass(e.popup._source._icon,'clicked');}});
 markers.addLayer(marker);}
 
-map.addLayer(markers);markerArray.push(markers);
+map.addLayer(markers);
+markerArray.push(markers);
 if(markerArray.length>0){map.fitBounds(L.featureGroup(markerArray).getBounds().pad(0.2));}
 map.removeControl(map.zoomControl);
 var zoomOptions={zoomInText:'<i class="fa fa-plus" aria-hidden="true"></i>',
