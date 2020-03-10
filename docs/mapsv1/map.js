@@ -1,8 +1,8 @@
-<script>
+
 $(document).ready(function(){if(document.getElementById("map")!==null){
     if($('#map').attr('data-map-scroll')=='true'||$(window).width()<992){
-        var scrollEnabled=false;}else{var scrollEnabled=true;
-        }
+        var scrollEnabled=false;}
+        else{var scrollEnabled=true;}
 var mapOptions={gestureHandling:scrollEnabled,}
 window.map=L.map('map',mapOptions);
 
@@ -138,6 +138,3 @@ $('a#streetView').attr({href:'https://www.google.com/maps/search/?api=1&query='+
 
 
 if(document.getElementById("singleListingMap")!==null){singleListingMap();}});
-
-
-</script>
